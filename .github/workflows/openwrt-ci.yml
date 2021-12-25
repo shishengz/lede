@@ -7,12 +7,20 @@
 #
 name: OpenWrt-CI
 
-on:
-  schedule:
-    - cron: 0 20 * * *
-  release:
-    types: [published]
+#on:
+#  schedule:
+#    - cron: 0 20 * * *
+#  release:
+#    types: [published]
 
+on:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
 jobs:
 
   build_openwrt:
